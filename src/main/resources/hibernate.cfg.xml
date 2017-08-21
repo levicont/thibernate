@@ -8,7 +8,7 @@
         <!--mapping resource="persist-mapping/Message.hbm.xml"/-->
 
         <!-- List of annotated classes-->
-        <mapping class="com.lvg.thibernate.hello.Message"/>
+        <!--mapping class="com.lvg.thibernate.hello.Message"/-->
 
 
     </session-factory>
