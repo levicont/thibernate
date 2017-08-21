@@ -1,11 +1,23 @@
 package com.lvg.thibernate.hello;
 
+import javax.persistence.*;
+
 /**
  * Created by victor on 17.08.2017.
  */
+@Entity
+@Table(name = "MESSAGES")
 public class Message {
+    @Id
+    @GeneratedValue
+    @Column(name = "MESSAGE_ID")
     private Long id;
+
+    @Column(name = "MESSAGE_TEXT")
     private String text;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "NEXT_MESSAGE_ID")
     private Message nextMessage;
 
     public Message(){}

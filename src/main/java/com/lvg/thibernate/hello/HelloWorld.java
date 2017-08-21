@@ -1,7 +1,6 @@
 package com.lvg.thibernate.hello;
 
 import com.lvg.thibernate.utils.HibernateUtil;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -22,7 +21,7 @@ public class HelloWorld {
         tx.commit();
         session.close();
 
-        Session newSession = HibernateUtil.getSessionFactory().openSession();
+       Session newSession = HibernateUtil.getSessionFactory().openSession();
         Transaction newTx = newSession.beginTransaction();
 
         List<Message> messages = newSession.createQuery("from Message m order by m.text asc").list();
@@ -45,7 +44,15 @@ public class HelloWorld {
         message.setText("Greeting Earthling");
         message.setNextMessage( new Message("Take me to your leader (please)") );
 
+        messages = thirdSession.createQuery("from Message m").list();
+        System.out.println(messages.size() + " message(s) found");
+        for (Message m : messages){
+            System.out.println(m.getText());
+        }
+
         thirdTx.commit();
         thirdSession.close();
+
+        HibernateUtil.shutdown();
     }
 }
