@@ -1,6 +1,7 @@
 package com.lvg.thibernate.hello.em;
 
 import com.lvg.thibernate.hello.Message;
+import com.lvg.thibernate.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,7 +16,7 @@ public class HelloWorldEntityManager {
     public static void main(String[] args) {
 // Start EntityManagerFactory
         EntityManagerFactory emf =
-                Persistence.createEntityManagerFactory("helloworld");
+                JPAUtil.getEntityManagerFactory();
 // First unit of work
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -39,6 +40,6 @@ public class HelloWorldEntityManager {
         newTx.commit();
         newEm.close();
 // Shutting down the application
-        emf.close();
+        JPAUtil.shutdownEMF();
     }
 }

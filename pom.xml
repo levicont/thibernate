@@ -34,7 +34,6 @@
             <version>1.0.0.Final</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
         <dependency>
             <groupId>org.hsqldb</groupId>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jboss-ejb3-all">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/resources/jboss/lib/jboss-ejb3-all.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
