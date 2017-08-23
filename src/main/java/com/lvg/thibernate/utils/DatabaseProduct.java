@@ -32,6 +32,29 @@ public enum DatabaseProduct {
             ImprovedH2Dialect.class.getName()
     ),
 
+    HSQLDB(
+            new DataSourceConfiguration() {
+
+                public void configure(PoolingDataSource ds, String connectionURL) {
+                    ds.setClassName("org.hsqldb.jdbc.pool.JDBCXADataSource");
+
+                    // External instance: jdbc:h2:tcp://localhost/mem:test;USER=sa
+                    ds.getDriverProperties().put(
+                            "URL",
+                            connectionURL != null
+                                    ? connectionURL :
+                                    "jdbc:hsqldb:hsql://localhost"
+                    );
+
+                    //ds.getDriverProperties().put("driverClassName", "org.hsqldb.jdbcDriver");
+                    ds.getDriverProperties().put("user", "sa");
+
+
+                }
+            },
+            org.hibernate.dialect.HSQLDialect.class.getName()
+    ),
+
     ORACLE(
             new DataSourceConfiguration() {
 
