@@ -1,19 +1,23 @@
 package com.lvg.thibernate.ce.models;
 
 
+import com.lvg.thibernate.ce.Constants;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "ITEMS")
 public class Item implements Serializable{
 
     @Id
-    @GeneratedValue(generator = "ID_GENERATOR")
+    @GeneratedValue(generator = Constants.ID_GENERATOR)
     protected Long id;
     protected String name;
     protected Date auctionEnd;
