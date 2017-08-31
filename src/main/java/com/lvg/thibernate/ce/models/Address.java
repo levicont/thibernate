@@ -2,50 +2,37 @@ package com.lvg.thibernate.ce.models;
 
 import com.sun.istack.internal.NotNull;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 
 /**
  * Created by Victor on 30.08.2017.
  */
 @Embeddable
 public class Address {
-
-    @NotNull
-    @Column(nullable = false)
-    protected String city;
-
-    @NotNull
-    @Column(nullable = false, length = 5)
-    protected String zipCode;
-
     @NotNull
     @Column(nullable = false)
     protected String street;
 
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "name", column = @Column(name = "CITY", nullable = false))
+    })
+    protected City city;
+
     protected Address() {
     }
 
-    public Address(String city, String zipCode, String street) {
-        this.city = city;
-        this.zipCode = zipCode;
+    public Address(String street, City city) {
         this.street = street;
+        this.city = city;
     }
 
-    public String getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
     }
 
     public String getStreet() {

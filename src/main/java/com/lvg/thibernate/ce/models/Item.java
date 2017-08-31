@@ -2,11 +2,11 @@ package com.lvg.thibernate.ce.models;
 
 
 import com.lvg.thibernate.ce.Constants;
+import com.lvg.thibernate.ce.converter.MonetaryAmountConverter;
+import com.lvg.thibernate.ce.models.advanced.MonetaryAmount;
+import com.sun.istack.internal.NotNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,6 +21,11 @@ public class Item implements Serializable{
     protected Long id;
     protected String name;
     protected Date auctionEnd;
+
+    @NotNull
+    @Convert(converter = MonetaryAmountConverter.class, disableConversion = false)
+    @Column(name = "PRICE", length = 64)
+    protected MonetaryAmount buyNowPrice;
 
     protected Set<Bid> bids = new HashSet<>();
 

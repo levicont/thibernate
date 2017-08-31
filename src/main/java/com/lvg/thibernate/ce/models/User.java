@@ -2,10 +2,7 @@ package com.lvg.thibernate.ce.models;
 
 import com.lvg.thibernate.ce.Constants;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -23,4 +20,14 @@ public class User implements Serializable{
 
 
     protected Address address;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "city", column = @Column(name = "BILLING_CITY")),
+            @AttributeOverride(name = "zipcode", column = @Column(name = "BILLING_ZIP_CODE", length = 5)),
+            @AttributeOverride(name = "street", column = @Column(name = "BILLING_STREET")),
+            @AttributeOverride(name = "country", column = @Column(name = "BILLING_COUNTRY"))
+
+    })
+    protected Address billingAddress;
 }
